@@ -7,7 +7,7 @@ function Forget() {
   const [mail,setMail]=useState("")
 const navigate=useNavigate()
   const mailSend=async()=>{
-   await axios.post('http://localhost:8000/forgetpass',{email:mail})
+   await axios.post('https://mailverifybe.onrender.com/forgetpass',{email:mail})
    const forgetFalg= await axios.post('http://localhost:8000/forgetpass',{email:mail})
 
    if(forgetFalg.data.otp){
