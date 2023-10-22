@@ -11,7 +11,7 @@ function App() {
       <Route path='/login' element={<Login/>}/>
       <Route path='/forget' element={<Forget/>}/>
       <Route path='resetpassword/*' element={<ResePassword/>}/>
-      {/* <Route path='/'  element={<Navigate to='/login'/>}/> */}
+      <Route path='/*'  element={<Navigate to='/login'/>}/>
     </Routes>
     </BrowserRouter>
 
