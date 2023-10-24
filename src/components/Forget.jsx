@@ -3,12 +3,13 @@ import React, { useContext } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { UserDetailContext } from './userDetailContext';
+import ApiService from '../common/ApiService';
 function Forget() {
 
   const { mail, setMail } = useContext(UserDetailContext)
   // const navigate = useNavigate()
   const mailSend = async () => {
-    await axios.post('http://localhost:8000/forgetpass', { email: mail })
+    await ApiService.post('/forgetpass', { email: mail })
     //  await axios.post('http://localhost:8000/forgetpass', { email: mail })
     // if (forgetFalg.data.otp) {
     //   navigate('/resetpassword')

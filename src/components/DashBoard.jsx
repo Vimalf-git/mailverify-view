@@ -3,17 +3,14 @@ import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 import UseLogout from './CustomHooks/UseLogout';
 import { toast } from 'react-toastify';
+import ApiService from '../common/ApiService';
 
 function DashBoard() {
     const logout=UseLogout();
     const [data, setData] = useState([])
-    const token=sessionStorage.getItem('token')
     const getData = async () => {
         try {
-            const header = `Authorization: Bearer ${token}`;
-            const res = await axios.get('http://localhost:8000/getAll',{
-                headers:header
-            });
+            const res = await ApiService.get('/getAll');
             console.log(res);
             if (res.status == 200) {
                 setData(res.data.data)

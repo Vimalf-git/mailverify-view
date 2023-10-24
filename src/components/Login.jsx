@@ -1,7 +1,7 @@
-import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
+import ApiService from '../common/ApiService';
 
 function Login() {
     const [email, setMail] = useState("")
@@ -9,7 +9,7 @@ function Login() {
     const navigate = useNavigate();
     const loginVerify = async (e) => {
         e.preventDefault();
-        const res = await axios.post('http://localhost:8000/login', {
+        const res = await ApiService.post('/login', {
             mail: email,
             password: password
         })

@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Navigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { UserDetailContext } from '../userDetailContext';
+import ApiService from '../../common/ApiService';
 
 function UseValidate({ children }) {
   // const { OTP, setOTP } = useContext(UserDetailContext);
@@ -17,7 +18,7 @@ function UseValidate({ children }) {
   const getData = async () => {
 
     try {
-      let res = await axios.get(`http://localhost:8000/forgetpass/getres/${id}/${token}`)
+      let res = await ApiService.get(`/forgetpass/getres/${id}/${token}`)
       // console.log(res.data.OTP);
       // console.log(OTP + "-->" + "otp");
       if (res.status === 200) {
