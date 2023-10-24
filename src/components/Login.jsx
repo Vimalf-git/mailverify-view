@@ -20,7 +20,11 @@ function Login() {
                 navigate('/dashboard')
             }
         } catch (error) {
-            
+            if(error.response.data.status===400){
+                toast.error('Invalid user')
+            }else{
+                toast.error(error.response.data.message);
+            }
         }
        
     }
@@ -39,7 +43,7 @@ function Login() {
                 </div>
                 <div className='for-crt-link mb-3'>
                     <Link style={{ textDecoration: 'none' }} to='/forget'>forget password</Link>
-                    <Link style={{ textDecoration: 'none' }} to='/'>SignUp</Link>
+                    <Link style={{ textDecoration: 'none' }} to='/createuser'>SignUp</Link>
                 </div>
 
                 <div className="d-grid">

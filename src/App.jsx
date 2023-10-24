@@ -6,13 +6,16 @@ import ResePassword from './components/ResePassword'
 import UserDetails from './components/userDetailContext'
 import DashBoard from './components/DashBoard'
 import ProtectedRoute from './components/ProtectedRoute'
-import UseValidate from './components/CustomHooks/UseValidate'
+// import UseValidate from './components/CustomHooks/UseValidate'
+import CreateUser from './components/CreateUser'
 // import { userDetailContext } from './components/userDetailContext'
 function App() {
   return (
     <>
       <BrowserRouter>
+
         <Routes>
+          <Route path='/createuser' element={<CreateUser/>}/>
           <Route path='/forget' element={
             <UserDetails>
               <Forget />
