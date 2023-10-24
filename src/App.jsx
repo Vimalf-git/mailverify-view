@@ -23,7 +23,7 @@ function App() {
               <DashBoard />
             </ProtectedRoute>
           } />
-          <Route path='resetpassword' element={
+          <Route path='/resetpassword/*' element={
             <UserDetails>
 
               {/* <UseValidate> */}
