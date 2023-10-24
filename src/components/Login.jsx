@@ -1,27 +1,56 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import axios from 'axios';
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 function Login() {
+    const [email, setMail] = useState("")
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+    const loginVerify = async (e) => {
+        e.preventDefault();
+        const res = await axios.post('http://localhost:8000/login', {
+            mail: email,
+            password: password
+        })
+        try {
+            if (res.status == 200) {
+                toast.success("login success")
+                sessionStorage.setItem('token',res.data.token)
+                navigate('/dashboard')
+            }
+        } catch (error) {
+            
+        }
+       
+    }
     return (
         <>
             <form className='loginForm'>
                 <div className="form-floating login-box mb-3">
-                    <input type="email" className="form-control box-size" id="floatingInput" placeholder="name@example.com" />
+                    <input type="email" className="form-control box-size"
+                        id="floatingInput" placeholder="name@example.com" onChange={(e) => setMail(e.target.value)} />
                     <label htmlFor="floatingInput">Email address</label>
                 </div>
                 <div className="form-floating  mb-3">
-                    <input type="password" className="form-control box-size" id="floatingPassword" placeholder="Password" />
+                    <input type="password" className="form-control box-size"
+                        id="floatingPassword" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                     <label htmlFor="floatingPassword">Password</label>
                 </div>
                 <div className='for-crt-link mb-3'>
-                    <Link style={{textDecoration:'none'}} to='/forget'>forget password</Link>
-                    <Link style={{textDecoration:'none'}} to='/'>SignUp</Link>
+                    <Link style={{ textDecoration: 'none' }} to='/forget'>forget password</Link>
+                    <Link style={{ textDecoration: 'none' }} to='/'>SignUp</Link>
                 </div>
 
                 <div className="d-grid">
-                    <button className="btn box-size btn-lg btn-primary btn-login text-uppercase fw-bold mb-2 box-size" >Sign in</button>
+                    <button className="btn box-size btn-lg btn-primary 
+                    btn-login text-uppercase fw-bold mb-2 box-size"
+                        onClick={(e) => loginVerify(e)}
+                    >
+                        Sign in
+                    </button>
                 </div>
-               
+
             </form>
 
         </>
