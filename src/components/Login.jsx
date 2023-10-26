@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import ApiService from '../common/ApiService';
+import UseLogout from './CustomHooks/UseLogout';
 
 function Login() {
     const [email, setMail] = useState("")
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const logOut=UseLogout
     const loginVerify = async (e) => {
         e.preventDefault();
         const res = await ApiService.post('/login', {
@@ -22,8 +24,10 @@ function Login() {
         } catch (error) {
             if(error.response.data.status===400){
                 toast.error('Invalid user')
+                logOut()
             }else{
                 toast.error(error.response.data.message);
+                logOut()
             }
         }
        
